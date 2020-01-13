@@ -1,0 +1,59 @@
+local ReplicatedStorage = game.ReplicatedStorage
+local State
+local Time
+
+local Clock = script.Parent.Frame.label_time
+local Status = script.Parent.Frame.label_state
+
+local PrettyTime = ""
+
+
+function Modulo(value, divisor)
+	
+end
+function FormatTimeFromSeconds(raw)
+	--local _minutes = raw / 60
+	local _tmp = raw
+	local finished = false
+	local mins =0
+	local seconds =0
+	
+	local pretty_mins = ""
+	local pretty_secs = ""
+	
+	while not finished do
+		wait(0)
+		--print("result: " .. tostring((math.fmod(_tmp,60))))
+		if(_tmp -60 >= 0)then
+			print("Take a min")
+			_tmp = _tmp -60
+			mins = mins +1
+		else
+			finished = true
+		end
+	end
+	
+	if(mins < 10)then
+		pretty_mins = ("0"..mins)
+	else
+		pretty_mins = mins
+	end
+	
+	if(_tmp < 10)then
+		pretty_secs = ("0".._tmp)
+	else
+		pretty_secs = _tmp
+	end
+	
+	print("Return : " .. tostring(pretty_mins) .. ":" .. tostring(pretty_secs))
+	return(tostring(pretty_mins) .. ":" .. tostring(pretty_secs))
+end
+
+while true do
+	wait(1)
+	Time = ReplicatedStorage.Clock.Value
+	local _state = ReplicatedStorage.GameState.Value
+	
+	Clock.Text = FormatTimeFromSeconds(Time)
+	Status.Text = _state
+end
