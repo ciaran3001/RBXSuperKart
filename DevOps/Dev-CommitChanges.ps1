@@ -1,6 +1,6 @@
 cd C:\Users\Ciaran\Desktop\Projects\RobloCart\Source
 git checkout -b Dev
-git checkout -a
+git branch -a
 
 git add * 
 git commit -m"Automatic Commit Date: "$(Get-Date -UFormat "%A %m/%d/%Y %R %Z")
